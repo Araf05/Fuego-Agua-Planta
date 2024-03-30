@@ -1,3 +1,4 @@
+let opciones = ["PIEDRA", "PAPEL", "TIJERAS"];
 
 function aleatorio(min, max){
     return Math.floor( Math.random( max - min + 1 ) + min );
@@ -6,10 +7,10 @@ function aleatorio(min, max){
 let jugador = 0;
 let pc = aleatorio(1, 3);
 
-jugador = prompt("Elige un numero entre el 1 y el 3: ");
+jugador = prompt("Elige: 1 para piedra, 2 para papel, 3 para tijeras");
 
-alert("Elegiste " + jugador);
-alert("Pc eligio " + pc);
+alert("Elegiste " + opciones[jugador-1]);
+alert("Pc eligio " + opciones[pc-1]);
 
 if(pc == jugador){
     alert("EMPATE");
