@@ -1,7 +1,7 @@
-let opciones = ["PIEDRA", "PAPEL", "TIJERAS"];
+let opciones = ["FUEGO", "AGUA", "PLANTA"];
 
 function aleatorio(min, max){
-    return Math.floor( Math.random( max - min + 1 ) + min );
+    return Math.floor( Math.random()*( max - min + 1 ) + min );
 }
 
 
@@ -11,8 +11,9 @@ let ganados = 0;
 let perdidos = 0;
 
 while(ganados < 3 && perdidos < 3){
+
     pc= aleatorio(1, 3);
-    jugador = prompt("Elige: 1 para piedra, 2 para papel, 3 para tijeras");
+    jugador = prompt("Elige: 1 para fuego, 2 para agua, 3 para planta");
 
     alert("Elegiste " + opciones[jugador-1]);
     alert("Pc eligio " + opciones[pc-1]);
