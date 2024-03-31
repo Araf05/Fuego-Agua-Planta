@@ -7,20 +7,35 @@
 </head>
 <body>
     <h1>Mokepon! 🔥💧🌱</h1>
-
-    <section id="seleccionar-mascota"></section>
-
+    <section id="seleccionar-mascota">
+        <h2>Elige tu mascota:</h2>
+        <select name="mascota" id="">
+            <option value="hipodoge">Hipodoge 💧</option>
+            <option value="capipepo">Capipepo 🌱</option>
+            <option value="ratigueya">Ratigueya 🔥</option>
+            <option value="langostelvis">Langostelvis 💧🔥</option>
+            <option value="tucapalma">Tucapalma 💧🌱</option>
+            <option value="pydos">Pydos 🌱🔥</option>
+        </select>
+        <button id="btn-mascota">Seleccionar</button>
+    </section>
     <section id="seleccionar-ataque">
+        <h2>Elige tu ataque:</h2>
         <p>Tu mascota tiene <span>3</span> vidas.</p>
         <p>La mascota de tu enemigo tiene <span>3</span> vidas.</p>
-
         <p>
             <button>Fuego 🔥</button>
             <button>Agua 💧</button>
             <button>Planta 🌱</button>
         </p>
     </section>
+    <section id="mensajes">
+        <p>Tu mascota atacó con FUEGO, la mascota del enemigo atacó con PLANTA - GANASTE 🎉</p>
+    </section>
+    <section id="reiniciar">
+        <button>Reiniciar</button>
+    </section>
 
-    <script src="app.js"></script>
+   <!-- <script src="app.js"></script> -->
 </body>
 </html>
