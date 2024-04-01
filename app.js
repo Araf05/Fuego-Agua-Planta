@@ -48,7 +48,12 @@ function iniciarJuego() {
 }
 
 function seleccionarMascotaJugador() {
-    console.log(mascotaJugador);
+    if(mascotaJugador != ""){
+        console.log(mascotaJugador);
+    } else {
+        console.log("No has seleccionado ninguna mascota!");
+    }
+    
 }
 
 window.addEventListener("load", iniciarJuego);
