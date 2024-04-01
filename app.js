@@ -43,15 +43,19 @@ function iniciarJuego() {
 
     let selectMascotas = document.getElementById("select-mascota");
     selectMascotas.addEventListener("change", function() {
-        mascotaJugador = this.options[this.selectedIndex].value;
+        mascotaJugador = this.options[this.selectedIndex];
     });
 }
 
 function seleccionarMascotaJugador() {
-    if(mascotaJugador != ""){
+    let spanMascotaJugador = document.getElementById("mascota-jugador");
+    if( (mascotaJugador.value != undefined) && (mascotaJugador.value != "") ){
+        spanMascotaJugador.innerHTML = mascotaJugador.innerHTML;
         console.log(mascotaJugador);
+        console.log(spanMascotaJugador);
     } else {
         console.log("No has seleccionado ninguna mascota!");
+        spanMascotaJugador.innerHTML = "";
     }
     
 }
