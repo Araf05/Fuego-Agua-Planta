@@ -51,13 +51,22 @@ function seleccionarMascotaJugador() {
     let spanMascotaJugador = document.getElementById("mascota-jugador");
     if( (mascotaJugador.value != undefined) && (mascotaJugador.value != "") ){
         spanMascotaJugador.innerHTML = mascotaJugador.innerHTML;
-        console.log(mascotaJugador);
-        console.log(spanMascotaJugador);
+        seleccionarMascotaEnemigo();
     } else {
         console.log("No has seleccionado ninguna mascota!");
         spanMascotaJugador.innerHTML = "";
     }
     
+}
+
+function seleccionarMascotaEnemigo() {
+    let ataqueAleatorio =  document.getElementById("select-mascota").options[aleatorio(1,3)].innerHTML;
+    let spanMascotaEnemigo = document.getElementById("mascota-enemigo");
+    spanMascotaEnemigo.innerHTML = ataqueAleatorio;
+}
+
+function aleatorio(min, max){
+    return Math.floor( Math.random()*( max - min + 1 ) + min );
 }
 
 window.addEventListener("load", iniciarJuego);
