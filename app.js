@@ -36,6 +36,7 @@
 
 // let mascotas = ["hapodoge", "capipepo", "ratigueya", "langostelvis", "tucapalma", "pydos"];
 let mascotaJugador = "";
+let ataqueJugador;
 
 function iniciarJuego() {
     let btnMascota = document.getElementById("btn-mascota");
@@ -45,6 +46,13 @@ function iniciarJuego() {
     selectMascotas.addEventListener("change", function() {
         mascotaJugador = this.options[this.selectedIndex];
     });
+
+    let btnFuego = document.getElementById("btn-fuego");
+    btnFuego.addEventListener("click", ataqueFuego);
+    let btnAgua = document.getElementById("btn-agua");
+    btnAgua.addEventListener("click", ataqueAgua);
+    let btnPlanta = document.getElementById("btn-planta");
+    btnPlanta.addEventListener("click", ataquePlanta);
 }
 
 function seleccionarMascotaJugador() {
@@ -63,6 +71,19 @@ function seleccionarMascotaEnemigo() {
     let ataqueAleatorio =  document.getElementById("select-mascota").options[aleatorio(1,3)].innerHTML;
     let spanMascotaEnemigo = document.getElementById("mascota-enemigo");
     spanMascotaEnemigo.innerHTML = ataqueAleatorio;
+}
+
+function ataqueFuego() {
+    ataqueJugador = "FUEGO";
+    console.log(ataqueJugador);
+}
+function ataqueAgua() {
+    ataqueJugador = "AGUA";
+    console.log(ataqueJugador);
+}
+function ataquePlanta() {
+    ataqueJugador = "PLANTA";
+    console.log(ataqueJugador);
 }
 
 function aleatorio(min, max){
