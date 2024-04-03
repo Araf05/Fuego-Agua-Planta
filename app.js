@@ -1,5 +1,7 @@
 // let opciones = ["FUEGO", "AGUA", "PLANTA"];
 
+const { numericLiteral } = require("@babel/types");
+
 // function aleatorio(min, max){
 //     return Math.floor( Math.random()*( max - min + 1 ) + min );
 // }
@@ -36,7 +38,9 @@
 
 // let mascotas = ["hapodoge", "capipepo", "ratigueya", "langostelvis", "tucapalma", "pydos"];
 let mascotaJugador = "";
-let ataqueJugador;
+let ataqueJugador = "";
+let ataqueEnemigo = "";
+let ataqueAleatorio = -1;
 
 function iniciarJuego() {
     let btnMascota = document.getElementById("btn-mascota");
@@ -46,7 +50,7 @@ function iniciarJuego() {
     selectMascotas.addEventListener("change", function() {
         mascotaJugador = this.options[this.selectedIndex];
     });
-
+    
     let btnFuego = document.getElementById("btn-fuego");
     btnFuego.addEventListener("click", ataqueFuego);
     let btnAgua = document.getElementById("btn-agua");
@@ -68,22 +72,39 @@ function seleccionarMascotaJugador() {
 }
 
 function seleccionarMascotaEnemigo() {
-    let ataqueAleatorio =  document.getElementById("select-mascota").options[aleatorio(1,3)].innerHTML;
+    ataqueAleatorio = aleatorio(1,3);
+    let mascotaAleatoria =  document.getElementById("select-mascota").options[numAleatorio].innerHTML;
     let spanMascotaEnemigo = document.getElementById("mascota-enemigo");
-    spanMascotaEnemigo.innerHTML = ataqueAleatorio;
+    spanMascotaEnemigo.innerHTML = mascotaAleatoria;
+}
+
+function elegirAtaqueEnemigo(){
+    switch(ataqueAleatorio)
+    {
+        case 1:
+            ataqueEnemigo = "FUEGO";
+        break;
+        case 2:
+            ataqueEnemigo = "AGUA";
+        break;
+        case 3:
+            ataqueEnemigo = "PLANTA";
+        break;
+    }
 }
 
 function ataqueFuego() {
     ataqueJugador = "FUEGO";
-    console.log(ataqueJugador);
+    elegirAtaqueEnemigo();
+    
 }
 function ataqueAgua() {
     ataqueJugador = "AGUA";
-    console.log(ataqueJugador);
+    elegirAtaqueEnemigo();
 }
 function ataquePlanta() {
     ataqueJugador = "PLANTA";
-    console.log(ataqueJugador);
+    elegirAtaqueEnemigo();
 }
 
 function aleatorio(min, max){
