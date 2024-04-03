@@ -1,7 +1,4 @@
 // let opciones = ["FUEGO", "AGUA", "PLANTA"];
-
-const { numericLiteral } = require("@babel/types");
-
 // function aleatorio(min, max){
 //     return Math.floor( Math.random()*( max - min + 1 ) + min );
 // }
@@ -73,12 +70,12 @@ function seleccionarMascotaJugador() {
 
 function seleccionarMascotaEnemigo() {
     ataqueAleatorio = aleatorio(1,3);
-    let mascotaAleatoria =  document.getElementById("select-mascota").options[numAleatorio].innerHTML;
+    let mascotaAleatoria =  document.getElementById("select-mascota").options[ataqueAleatorio].innerHTML;
     let spanMascotaEnemigo = document.getElementById("mascota-enemigo");
     spanMascotaEnemigo.innerHTML = mascotaAleatoria;
 }
 
-function elegirAtaqueEnemigo(){
+function elegirAtaqueEnemigo() {
     switch(ataqueAleatorio)
     {
         case 1:
@@ -91,6 +88,8 @@ function elegirAtaqueEnemigo(){
             ataqueEnemigo = "PLANTA";
         break;
     }
+
+    crearMensaje();
 }
 
 function ataqueFuego() {
@@ -105,6 +104,13 @@ function ataqueAgua() {
 function ataquePlanta() {
     ataqueJugador = "PLANTA";
     elegirAtaqueEnemigo();
+}
+
+function crearMensaje() {
+    let sectionMensaje = document.getElementById("mensajes");
+    let parrafo = document.createElement("p");
+    parrafo.innerHTML = "Tu mascota atacó con " +ataqueJugador+ ", la mascota del enemigo atacó con " +ataqueEnemigo+ " - GANASTE 🎉"
+    sectionMensaje.appendChild(parrafo);
 }
 
 function aleatorio(min, max){
