@@ -1,43 +1,10 @@
-// let opciones = ["FUEGO", "AGUA", "PLANTA"];
-// function aleatorio(min, max){
-//     return Math.floor( Math.random()*( max - min + 1 ) + min );
-// }
-
-
-// let jugador = 0;
-// let pc = 0;
-// let ganados = 0;
-// let perdidos = 0;
-
-// while(ganados < 3 && perdidos < 3){
-
-//     pc= aleatorio(1, 3);
-//     jugador = prompt("Elige: 1 para fuego, 2 para agua, 3 para planta");
-
-//     alert("Elegiste " + opciones[jugador-1]);
-//     alert("Pc eligio " + opciones[pc-1]);
-
-//     if(pc == jugador){
-//         alert("EMPATE");
-//     } else if(jugador == 1 && pc == 3 || jugador == 2 && pc == 1 || jugador == 3 && pc == 2){
-//         alert("GANASTE");
-//         ganados += 1;
-//     } else if(jugador == 1 && pc == 2 || jugador == 2 && pc == 3 || jugador == 3 && pc == 1){
-//         alert("PERDISTE");
-//         perdidos += 1;
-//     } else {
-//         alert("Opción no valida!");
-//     }
-// }
-
-// alert("Ganaste " + ganados + " veces. Perdiste " + perdidos + " veces.");
-
-
-// let mascotas = ["hapodoge", "capipepo", "ratigueya", "langostelvis", "tucapalma", "pydos"];
 let mascotaJugador = "";
+let mascotaEnemigo = "";
 let ataqueJugador = "";
 let ataqueEnemigo = "";
-let ataqueAleatorio = -1;
+let resultado = "";
+let vidasJugador = 3;
+let vidasEnemigo = 3;
 
 function iniciarJuego() {
     let btnMascota = document.getElementById("btn-mascota");
@@ -69,26 +36,25 @@ function seleccionarMascotaJugador() {
 }
 
 function seleccionarMascotaEnemigo() {
-    ataqueAleatorio = aleatorio(1,3);
-    let mascotaAleatoria =  document.getElementById("select-mascota").options[ataqueAleatorio].innerHTML;
+    mascotaEnemigo =  document.getElementById("select-mascota").options[aleatorio(1,6)].innerHTML;
     let spanMascotaEnemigo = document.getElementById("mascota-enemigo");
-    spanMascotaEnemigo.innerHTML = mascotaAleatoria;
+    spanMascotaEnemigo.innerHTML = mascotaEnemigo;
 }
 
 function elegirAtaqueEnemigo() {
+    let ataqueAleatorio = aleatorio(1,3);
     switch(ataqueAleatorio)
     {
         case 1:
-            ataqueEnemigo = "FUEGO";
-        break;
-        case 2:
             ataqueEnemigo = "AGUA";
         break;
-        case 3:
+        case 2:
             ataqueEnemigo = "PLANTA";
         break;
+        case 3:
+            ataqueEnemigo = "FUEGO";
+        break;
     }
-
     crearMensaje();
 }
 
@@ -107,10 +73,36 @@ function ataquePlanta() {
 }
 
 function crearMensaje() {
+    batallar();
+
     let sectionMensaje = document.getElementById("mensajes");
     let parrafo = document.createElement("p");
-    parrafo.innerHTML = "Tu mascota atacó con " +ataqueJugador+ ", la mascota del enemigo atacó con " +ataqueEnemigo+ " - GANASTE 🎉"
+    parrafo.innerHTML = "Tu mascota atacó con " +ataqueJugador+ ", la mascota del enemigo atacó con " +ataqueEnemigo+ " - " +resultado;
     sectionMensaje.appendChild(parrafo);
+}
+
+function batallar() {
+    if (ataqueJugador == ataqueEnemigo) {
+        resultado = "EMPATE 🤝";
+    } else if (ataqueJugador == "FUEGO" && ataqueEnemigo == "PLANTA" ||
+        ataqueJugador == "AGUA" && ataqueEnemigo == "FUEGO"   ||
+        ataqueJugador == "PLANTA" && ataqueEnemigo == "AGUA"  ) {
+        resultado = "GANASTE 🎉";
+        vidasEnemigo--;
+    } else {
+        resultado = "PERDISTE 🥶";
+        vidasJugador--;
+    }
+
+    actualizarVidas();
+}
+
+function actualizarVidas() {
+    let spanVidasJugador = document.getElementById("vidas-jugador");
+    spanVidasJugador.innerHTML = vidasJugador;
+
+    let spanVidasEnemigo = document.getElementById("vidas-enemigo");
+    spanVidasEnemigo.innerHTML = vidasEnemigo;
 }
 
 function aleatorio(min, max){
