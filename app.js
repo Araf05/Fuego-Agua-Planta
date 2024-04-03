@@ -2,7 +2,6 @@ let mascotaJugador = "";
 let mascotaEnemigo = "";
 let ataqueJugador = "";
 let ataqueEnemigo = "";
-let resultado = "";
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 
@@ -55,7 +54,7 @@ function elegirAtaqueEnemigo() {
             ataqueEnemigo = "FUEGO";
         break;
     }
-    crearMensaje();
+    batallar();
 }
 
 function ataqueFuego() {
@@ -72,9 +71,7 @@ function ataquePlanta() {
     elegirAtaqueEnemigo();
 }
 
-function crearMensaje() {
-    batallar();
-
+function crearMensaje(resultado) {
     let sectionMensaje = document.getElementById("mensajes");
     let parrafo = document.createElement("p");
     parrafo.innerHTML = "Tu mascota atacó con " +ataqueJugador+ ", la mascota del enemigo atacó con " +ataqueEnemigo+ " - " +resultado;
@@ -82,6 +79,7 @@ function crearMensaje() {
 }
 
 function batallar() {
+    let resultado = "";
     if (ataqueJugador == ataqueEnemigo) {
         resultado = "EMPATE 🤝";
     } else if (ataqueJugador == "FUEGO" && ataqueEnemigo == "PLANTA" ||
@@ -93,8 +91,10 @@ function batallar() {
         resultado = "PERDISTE 🥶";
         vidasJugador--;
     }
-
+    crearMensaje(resultado);
     actualizarVidas();
+
+    revisarVidas();
 }
 
 function actualizarVidas() {
@@ -103,6 +103,23 @@ function actualizarVidas() {
 
     let spanVidasEnemigo = document.getElementById("vidas-enemigo");
     spanVidasEnemigo.innerHTML = vidasEnemigo;
+}
+
+function revisarVidas() {
+    let mensaje = "";
+    if (vidasJugador == 0) {
+        mensaje = "PERDISTE LA BATALLA!";
+    } else if (vidasEnemigo == 0)  {
+        mensaje = "GANASTE LA BATALLA!";
+    }
+    mensajeFinal(mensaje);
+}
+
+function mensajeFinal(mensaje) {
+    let sectionMensaje = document.getElementById("mensajes");
+    let parrafo = document.createElement("p");
+    parrafo.innerHTML = mensaje;
+    sectionMensaje.appendChild(parrafo);
 }
 
 function aleatorio(min, max){
