@@ -37,7 +37,7 @@ function seleccionarMascotaJugador() {
     sectionSeleccionarMascota.style.display = "none";
 
     let sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque");
-    sectionSeleccionarAtaque.style.display = "block";
+    sectionSeleccionarAtaque.style.display = "flex";
 
     let spanMascotaJugador = document.getElementById("mascota-jugador");
     if( (mascotaJugador.value != undefined) && (mascotaJugador.value != "") ){
