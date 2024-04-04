@@ -20,6 +20,10 @@ function iniciarJuego() {
     btnAgua.addEventListener("click", ataqueAgua);
     let btnPlanta = document.getElementById("btn-planta");
     btnPlanta.addEventListener("click", ataquePlanta);
+    
+    let btnReiniciar = document.getElementById("btn-reiniciar");
+    btnReiniciar.addEventListener("click", reiniciarJuego);
+    
 }
 
 function seleccionarMascotaJugador() {
@@ -109,10 +113,13 @@ function revisarVidas() {
     let mensaje = "";
     if (vidasJugador == 0) {
         mensaje = "PERDISTE LA BATALLA!";
+        mensajeFinal(mensaje);
+        finalizarJuego();
     } else if (vidasEnemigo == 0)  {
         mensaje = "GANASTE LA BATALLA!";
+        mensajeFinal(mensaje);
+        finalizarJuego();
     }
-    mensajeFinal(mensaje);
 }
 
 function mensajeFinal(mensaje) {
@@ -120,6 +127,10 @@ function mensajeFinal(mensaje) {
     let parrafo = document.createElement("p");
     parrafo.innerHTML = mensaje;
     sectionMensaje.appendChild(parrafo);
+}
+
+function reiniciarJuego() {
+    location.reload();
 }
 
 function aleatorio(min, max){
