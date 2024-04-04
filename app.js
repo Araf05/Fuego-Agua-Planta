@@ -6,6 +6,12 @@ let vidasJugador = 3;
 let vidasEnemigo = 3;
 
 function iniciarJuego() {
+    let sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque");
+    sectionSeleccionarAtaque.style.display = "none";
+
+    let sectionReiniciar = document.getElementById("reiniciar");
+    sectionReiniciar.style.display  = "none";
+
     let btnMascota = document.getElementById("btn-mascota");
     btnMascota.addEventListener("click", seleccionarMascotaJugador);
 
@@ -27,6 +33,12 @@ function iniciarJuego() {
 }
 
 function seleccionarMascotaJugador() {
+    let sectionSeleccionarMascota = document.getElementById("seleccionar-mascota");
+    sectionSeleccionarMascota.style.display = "none";
+
+    let sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque");
+    sectionSeleccionarAtaque.style.display = "block";
+
     let spanMascotaJugador = document.getElementById("mascota-jugador");
     if( (mascotaJugador.value != undefined) && (mascotaJugador.value != "") ){
         spanMascotaJugador.innerHTML = mascotaJugador.innerHTML;
@@ -114,11 +126,9 @@ function revisarVidas() {
     if (vidasJugador == 0) {
         mensaje = "PERDISTE LA BATALLA!";
         mensajeFinal(mensaje);
-        finalizarJuego();
     } else if (vidasEnemigo == 0)  {
         mensaje = "GANASTE LA BATALLA!";
         mensajeFinal(mensaje);
-        finalizarJuego();
     }
 }
 
@@ -127,6 +137,16 @@ function mensajeFinal(mensaje) {
     let parrafo = document.createElement("p");
     parrafo.innerHTML = mensaje;
     sectionMensaje.appendChild(parrafo);
+
+    let btnFuego = document.getElementById("btn-fuego");
+    btnFuego.disabled = true;
+    let btnAgua = document.getElementById("btn-agua");
+    btnAgua.disabled = true;
+    let btnPlanta = document.getElementById("btn-planta");
+    btnPlanta.disabled = true;
+
+    let sectionReiniciar = document.getElementById("reiniciar");
+    sectionReiniciar.style.display  = "block";
 }
 
 function reiniciarJuego() {
